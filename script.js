@@ -4,24 +4,31 @@ let inputForm = document.getElementById("input-form");
 let ulElement = document.getElementById("ul-list");
 let btnClear = document.getElementById("btn-clear");
 let formElement = document.getElementById("form-wraper");
+let purchasedSpan = document.querySelector(".purchased");
 
 formElement.addEventListener("submit", function (event) {
   event.preventDefault();
   let inputValue = inputForm.value;
   let liElement = document.createElement("li");
   let btnDelete = document.createElement("button");
-  let btnCheck = document.createElement("button");
+  let inputCheck = document.createElement("input");
+  let labelValue = document.createElement("label");
 
   btnDelete.addEventListener("click", function () {
     liElement.remove();
   });
-  btnCheck.addEventListener("click", function () {
-    liElement.remove();
+  inputCheck.addEventListener("click", function () {
+    labelValue.classList.toggle("crossed");
+    inputCheck.classList.toggle("checked");
+    let purchaseNumber = document.querySelectorAll(".checked").length;
+    purchasedSpan.innerText = purchaseNumber
   });
-  liElement.appendChild(btnCheck);
-  liElement.innerText = inputValue;
+  inputCheck.setAttribute("type", "checkbox")
+  liElement.appendChild(inputCheck);
+  labelValue.innerText = inputValue;
   btnDelete.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
   btnDelete.style.background = "transparent";
+  liElement.appendChild(labelValue);
   liElement.appendChild(btnDelete);
   ulElement.appendChild(liElement);
   inputForm.value = " ";
@@ -29,6 +36,7 @@ formElement.addEventListener("submit", function (event) {
 
 btnClear.addEventListener("click", function () {
   ulElement.innerHTML = " ";
+  purchasedSpan.innerText = " ";
 });
 
 inputForm.addEventListener("focus", function () {

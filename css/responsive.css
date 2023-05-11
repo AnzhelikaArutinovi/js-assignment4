@@ -1,0 +1,15 @@
+@media (max-width: 550px) {
+    .input-wraper {
+-webkit-box-pack: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+gap: 10px;
+    }
+    #form-wraper {
+        gap: 10px;
+        width: 100%;
+    }
+    #input-form {
+        width: 100%;
+    }
+}
